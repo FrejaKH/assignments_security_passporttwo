@@ -1,0 +1,82 @@
+html, body {
+    font-family: sans-serif;
+    height: 100%;
+    margin: auto;
+    padding: 0;
+    width: 100%;
+}
+body {
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 100%;
+}
+
+header, main, footer {
+    outline: 0px solid red;
+    max-width: 100%;
+}
+
+header {
+  background: #111;
+  color: #eee;
+  display: grid;
+  grid-template-columns: auto auto;
+}
+header h2 {
+    padding-left: 0.2em;
+    text-align: left;
+}
+header nav {
+    padding-right: 0.2em;
+    text-align: right;
+}
+header nav ul {
+  list-style: none;
+  text-align: right;
+}
+header nav ul li {
+  display: inline;
+  margin-right: .2em;
+}
+header nav ul li a {
+  background: #ccc;
+  border-radius: 7px;
+  color: #111;
+  cursor: pointer;
+  display: inline-block;
+  padding: 5px 12px 4px;
+  text-decoration: none;
+}
+header nav ul li a:hover {
+  background-color: #999;
+}
+
+main {
+/*
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: auto;
+*/
+    height: 100%;
+    padding: .2em;
+}
+
+footer {
+    background-color: #111;
+    color: #eee;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+footer div {
+    color: #bbb;
+    padding-left: .2em;
+}
+footer div:last-child {
+    padding-right: .2em;
+    text-align: right;
+}
+footer div:last-child a {
+    color: inherit;
+
+}

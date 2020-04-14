@@ -1,42 +1,44 @@
+const createError = require('http-errors');
+const path = require('path');
+const logger = require('morgan');
+
 const express = require('express');
-const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
 
-const app = express();
-
 // Passport Config
 require('./config/passport')(passport);
 
-// DB Config
+// DB Config and server connect
 const db = require('./config/keys').mongoURI;
+mongoose.connect('mongodb://localhost/node-auth', {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true
+    })
+    .then( function() { console.log('mongoose connection open'); })
+    .catch( function(err) { console.error(err); });
 
-// Connect to MongoDB
-mongoose
-  .connect(
-    db,
-    { useNewUrlParser: true }
-  )
-  .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.log(err));
+const app = express();
+app.locals.pretty = app.get('env') === 'development';       // pretty print html
 
-// EJS
-app.use(expressLayouts);
-app.set('view engine', 'ejs');
+// view engine setup pug and static
+app.use(express.static(path.join(__dirname, 'public')));
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
 
 // Express body parser
 app.use(express.urlencoded({ extended: true }));
+app.use(logger('dev'));
 
 // Express session
-app.use(
-  session({
-    secret: 'secret',
+app.use(require('express-session')({                        // passport initialize
+    secret: 'keyboard cat',                                 // do the keyboard cat
     resave: true,
-    saveUninitialized: true
-  })
-);
+    saveUninitialized: false
+}));
 
 // Passport middleware
 app.use(passport.initialize());
@@ -57,6 +59,21 @@ app.use(function(req, res, next) {
 app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js'));
 
-const PORT = process.env.PORT || 5000;
+/*
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  next(createError(404));
+});
 
-app.listen(PORT, console.log(`Server started on port ${PORT}`));
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
+*/
+module.exports = app;
