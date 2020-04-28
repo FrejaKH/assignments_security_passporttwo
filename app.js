@@ -35,8 +35,8 @@ app.use(logger('dev'));
 
 // Express session
 app.use(require('express-session')({                        // passport initialize
-    secret: 'keyboard cat',                                 // do the keyboard cat
-    resave: true,
+    secret: 'ioeruir!rznbzvmn8768576hdsw&%',                 // do the keyboard cat
+    resave: true,                                           // to create entropy
     saveUninitialized: false
 }));
 
@@ -59,7 +59,6 @@ app.use(function(req, res, next) {
 app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js'));
 
-/*
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -75,5 +74,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-*/
+
 module.exports = app;
