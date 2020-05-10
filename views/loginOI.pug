@@ -1,0 +1,23 @@
+extends layout
+
+block content
+    h1 Identify Yourself
+    if errors != undefined && errors.length != 0
+        each error in errors
+            div(role='alert' id='a1') #{error.msg}
+    if success_msg != ''
+        div(role='alert' id='a2') #{success_msg}
+    if error_msg != ''
+        div(role='alert' id='a3') #{error_msg}
+    if error != ''
+        div(role='alert' id='a4') #{error}
+    form(id='myforml' action='/users/openid' method='post')
+        table
+            tr
+                td OpenID:
+                td
+                    input(type='text' name='openid_identifier' placeholder='OpenID Identifier' required)
+            tr
+                td
+                td
+                    input(type='submit' value='Login')
