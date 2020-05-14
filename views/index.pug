@@ -1,5 +1,8 @@
 extends layout
 
 block content
-  h1= subtitle
-  p Welcome to #{title}
+    h1= subtitle
+    p Welcome to #{user}
+    h3 Testing Strategies:
+    each strat in strategies
+        p #{strat}

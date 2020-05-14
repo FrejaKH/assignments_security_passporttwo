@@ -1,11 +1,11 @@
 {
-  "name": "node_passport_login",
+  "name": "node_passport_login_oauth2",
   "version": "1.0.0",
   "description": "Node.js authentication with Passport",
   "main": "app.js",
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www"
+    "test": "node ./bin/www"
   },
   "keywords": [],
   "author": "",
@@ -18,7 +18,8 @@
     "mongoose": "^5.7.5",
     "morgan": "^1.10.0",
     "passport": "^0.4.0",
-    "passport-local": "^1.0.0",
+    "passport-amazon": "^1.0.0",
+    "passport-gitlab2": "^5.0.0",
     "pug": "^2.0.4"
   },
   "devDependencies": {

@@ -5,7 +5,7 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('node_passport_login:server');
+var debug = require('debug')('node_passport_login_oauth2:server');
 var http = require('http');
 
 /**

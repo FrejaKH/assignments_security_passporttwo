@@ -31,15 +31,15 @@ header nav {
     padding-right: 0.2em;
     text-align: right;
 }
-header nav ul {
+header nav ul, .nav {
   list-style: none;
   text-align: right;
 }
-header nav ul li {
+header nav ul li, .nav li {
   display: inline;
   margin-right: .2em;
 }
-header nav ul li a {
+header nav ul li a, .nav li a {
   background: #ccc;
   border-radius: 7px;
   color: #111;

@@ -7,13 +7,12 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
+// Passport Config Strategies execute
+const Strategies = require('./config/passport')(passport);
+const keys = require('./config/keys');
 
-// Passport Config
-require('./config/passport')(passport);
-
-// DB Config and server connect
-const db = require('./config/keys').mongoURI;
-mongoose.connect('mongodb://localhost/node-auth', {
+// DB Config execute and server connect
+mongoose.connect(keys.mongoURI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true
@@ -35,7 +34,7 @@ app.use(logger('dev'));
 
 // Express session
 app.use(require('express-session')({                        // passport initialize
-    secret: 'ioeruir!rznbzvmn8768576hdsw&%',                 // do the keyboard cat
+    secret: keys.session.cookieSecret,                      // do the keyboard cat
     resave: true,                                           // to create entropy
     saveUninitialized: false
 }));

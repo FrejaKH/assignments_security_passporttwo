@@ -11,19 +11,8 @@ block content
         div(role='alert' id='a3') #{error_msg}
     if error != ''
         div(role='alert' id='a4') #{error}
-    form(id='myforml' action='/users/login' method='post')
-        table
-            tr
-                td Email:
-                td
-                    input(type='text' name='email' required)
-            tr
-                td Password:
-                td
-                    input(type='password' name='password' required)
-            tr
-                td
-                td
-                    input(type='submit' value='Go')
-    p No account?&nbsp;
-      a(href='/users/register') Register
+    ul.nav
+        li
+            a(href="/users/gitlab") Log In with Gitlab
+        li
+            a(href="/users/amazon") Log In with Amazon

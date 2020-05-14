@@ -13,28 +13,18 @@ exports.register = function (req, res) {
 };
 
 exports.postRegister = function (req, res) {
-    const { name, email, password, password2 } = req.body;
+    const { userid, email } = req.body;
     let errors = [];
 
-    if (!name || !email || !password || !password2) {
+    if (!userid || !email) {
         errors.push({ msg: 'Please enter all fields' });
-    }
-
-    if (password != password2) {
-        errors.push({ msg: 'Passwords do not match' });
-    }
-
-    if (password.length < 12) {
-        errors.push({ msg: 'Password must be at least 12 characters' });
     }
 
     if (errors.length > 0) {
         res.render('register', {
             errors,
-            name,
-            email,
-            password,
-            password2
+            userid,
+            email
         });
     } else {
         User.findOne({ email: email }).then( function (user) {
@@ -42,54 +32,66 @@ exports.postRegister = function (req, res) {
                 errors.push({ msg: 'Email already exists' });
                 res.render('register', {
                     errors,
-                    name,
-                    email,
-                    password,
-                    password2
+                    userid,
+                    email
                 });
               } else {
                   const newUser = new User({
-                      name,
-                      email,
-                      password
+                      userid,
+                      email
                   });
-
-                  bcrypt.hash(newUser.password, saltRounds, function (err, hash) {
-                      if (err) throw err;
-                      newUser.password = hash;
-                      newUser
-                          .save()
-                          .then(user => {
-                              req.flash(
-                                  'success_msg',
-                                  'You are now registered and can log in'
-                              );
-                              res.redirect('/users/login');
-                          })
-                          .catch(err => console.log(err));
-                  });
+                  newUser.save()
+                      .then( function(user) {
+                          req.flash(
+                              'success_msg',
+                              'You are now registered and can log in'
+                          );
+                          res.redirect('/users/login');
+                      })
+                      .catch(err => console.log(err));
               }
         });
     }
 };
 
 exports.login = function (req, res) {
-    res.render('login', {
-        title: 'Demoing PassportJS',
-        subtitle: 'Inspired by Traversy'
-    });
+    res.render('login', {subtitle: 'Pick a Login'})
 };
 
-exports.postLogin = function (req, res, next) {
-    passport.authenticate('local', {
+exports.logout = function (req, res) {
+    req.logout();                              // passport
+    req.flash('success_msg', 'You are logged out');
+    res.redirect('/');
+};
+
+/*
+exports.gitlab = function () {
+    console.log("outg");
+    passport.authenticate('gitlab',
+      {
+        scope: ['profile']
+      });
+};
+exports.gitlab_callback = function (req, res, next) {
+    passport.authenticate('gitlab', {
         successRedirect: '/dashboard',
         failureRedirect: '/users/login',
         failureFlash: true
     })(req, res, next);
 };
-
-exports.logout = function (req, res) {
-    req.logout();
-    req.flash('success_msg', 'You are logged out');
-    res.redirect('/users/login');
+*/
+/*
+exports.amazon = async function () {
+    console.log("outa");
+    await passport.authenticate('amazon');
+    console.log('outa ret');
 };
+
+exports.amazon_callback = function (req, res, next) {
+    passport.authenticate('amazon', {
+        successRedirect: '/dashboard',
+        failureRedirect: '/users/login',
+        failureFlash: true
+    })(req, res, next);
+};
+*/

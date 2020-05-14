@@ -1,7 +1,9 @@
 exports.frontpage = function (req, res) {
     res.render('index', {
         title: 'Demoing PassportJS',
-        subtitle: 'Inspired by Traversy'
+        subtitle: 'with OAuth2',
+        strategies: ['passport-gitlab2', 'amazon'],
+        user: req.user
     });
 };
 
