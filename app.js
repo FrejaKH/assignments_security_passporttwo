@@ -12,7 +12,8 @@ const Strategies = require('./config/passport')(passport);
 const keys = require('./config/keys');
 
 // DB Config execute and server connect
-mongoose.connect(keys.mongoURI, {
+//const db = require('./config/keys').mongoURI;
+mongoose.connect('mongodb://localhost/passportTwo', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true

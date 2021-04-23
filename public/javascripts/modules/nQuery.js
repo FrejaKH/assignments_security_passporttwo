@@ -2,19 +2,19 @@
 /**
  * nQuery, *the* JS Framework
  */
-const $ = function (foo) {
+export const $ = function (foo) {
     return document.getElementById(foo);
 }
 
-const deg2rad = function(deg) {
+export const deg2rad = function(deg) {
     return deg * Math.PI / 180;
 }
 
-const rad2deg = function(rad) {
+export const rad2deg = function(rad) {
     return rad * 180 / Math.PI;
 }
 
-const roll = function(foo, bar = 0) {
+export const roll = function(foo, bar = 0) {
     return Math.floor(Math.random() * foo + 1) + bar;
 }
 
@@ -26,14 +26,14 @@ const roll = function(foo, bar = 0) {
  * @param: delay, number of millisecs between displays
  * Canvas module with prep and clear
  */
-    const animate = function(arr, onoff, delay) {
+export const animate = function(cv, arr, onoff, delay) {
     console.log(arr.length);
     onoff = setInterval(function() {
         if (arr.length < 1) {
             return;
         }
-        arr[0].cv.clear();
-        arr[0].cv.prep();
+        cv.clear();
+        cv.prep();
         for (let obj of arr) {
             obj.move();
             obj.draw();
@@ -41,7 +41,7 @@ const roll = function(foo, bar = 0) {
     }, delay);
 }
 
-const randomColor = function() {
+export const randomColor = function() {
     let hexDigits = '0123456789abcdef';
     let rrggbb = '#';
     for (let i = 0; i < 6; i++) {
@@ -54,7 +54,7 @@ const randomColor = function() {
  * yiq
  * @param: toWhat => '#rrggbb'
  */
-const contrastColor = function(toWhat) {
+export const contrastColor = function(toWhat) {
     toWhat = toWhat.substr(1);
     let r = parseInt(toWhat.substr(0,2),16);
     let g = parseInt(toWhat.substr(2,2),16);
@@ -63,12 +63,22 @@ const contrastColor = function(toWhat) {
     return (yiq >= 128) ? 'black' : 'white';
 }
 
-const copyr = function(bar, year=2020) {
+export const copyr = function(bar, year=2020) {
     let now = new Date();
     let sml = document.createElement("small");
-    let cpr = document.createTextNode(`\u00a9nml, ${year}-${now.getFullYear()}`);
+    let str = `${year}-${now.getFullYear()}`;
+    if (year === now.getFullYear()) str = `${year}`;
+    let cpr = document.createTextNode(`\u00a9nml, ${str}`);
     sml.appendChild(cpr);
     $(bar).appendChild(sml);
 }
 
-export {$, deg2rad, rad2deg, roll, animate, randomColor, contrastColor, copyr};
+export const headAndShoulders = function (foo) {
+    let bar = document.getElementsByClassName('title');
+    for (let baz of bar) {
+        let qux = document.createTextNode(foo);
+        baz.appendChild(qux);
+    }
+};
+
+

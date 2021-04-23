@@ -1,82 +1,101 @@
-html, body {
-    font-family: sans-serif;
+html {
     height: 100%;
-    margin: auto;
-    padding: 0;
     width: 100%;
 }
+/* main layout grid with three rows, header main, and footer */
 body {
-    min-height: 100%;
+    background: #eee;
+    color: #111;
+    font-family: sans-serif;
     display: grid;
     grid-template-rows: auto 1fr auto;
     grid-template-columns: 100%;
+    min-height: 100%;
 }
-
+/* three main layout elements are all grids themselves */
 header, main, footer {
+    display: grid;
     outline: 0px solid red;
-    max-width: 100%;
+    padding: .5rem;
 }
 
+h1 { font-size: 1.6rem; padding: .4rem; }
+h2 { font-size: 1.4rem; padding: .3rem; text-align: center; }
+h3 { font-size: 1.2rem; padding: .3rem; }
+h4 { font-size: 1.0rem; padding: .2rem; text-align: center; }
+
+/* ----------------- header -------------- */
+/* header layout two columns */
 header {
-  background: #111;
-  color: #eee;
-  display: grid;
-  grid-template-columns: auto auto;
-}
-header h2 {
-    padding-left: 0.2em;
-    text-align: left;
+    background: #111;
+    color: #eee;
+    grid-template-columns: auto auto;
 }
 header nav {
-    padding-right: 0.2em;
     text-align: right;
 }
-header nav ul, .nav {
-  list-style: none;
-  text-align: right;
+/* header presentation */
+header nav ul {
+    color: #eee;
+    list-style: none;
+    padding: .8rem 0 0;
+    text-align: right;
 }
-header nav ul li, .nav li {
-  display: inline;
-  margin-right: .2em;
+header nav ul li {
+    display: inline;
+    font-size: 1.2rem;
+    margin: 0;
 }
-header nav ul li a, .nav li a {
-  background: #ccc;
-  border-radius: 7px;
-  color: #111;
-  cursor: pointer;
-  display: inline-block;
-  padding: 5px 12px 4px;
-  text-decoration: none;
+header nav ul li:not(:last-child):after {
+  content: ' | ';
+  color: magenta;
 }
-header nav ul li a:hover {
-  background-color: #999;
+header a {
+    color: inherit;
+    font-style: normal;
+    text-decoration: none;
 }
-
-main {
-/*
-    display: grid;
-    grid-template-rows: auto;
-    grid-template-columns: auto;
-*/
-    height: 100%;
-    padding: .2em;
+header nav a {
+    font-variant: small-caps;
+}
+header nav a:hover {
+    text-decoration: underline;
 }
 
+/* footer layout two columns */
 footer {
     background-color: #111;
     color: #eee;
-    display: grid;
     grid-template-columns: auto auto;
 }
 footer div {
     color: #bbb;
-    padding-left: .2em;
 }
 footer div:last-child {
-    padding-right: .2em;
     text-align: right;
 }
+/* footer presentation */
 footer div:last-child a {
     color: inherit;
+}
 
+/* ----------------- main -------------- */
+main {
+    grid-template-columns: auto;
+}
+section, div {
+    padding: 1rem;
+}
+.frontpage { /* vertical centering, the best one */
+/* works in recent opera/chrome/ff without prefixes */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form div label {
+    border: 0px solid red;
+    display: inline-block;
+    text-align: right;
+    width: 10em;
 }

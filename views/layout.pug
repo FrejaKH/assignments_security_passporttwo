@@ -1,32 +1,34 @@
-doctype
+doctype html
 html
   head
-    title= title
+    title.title
     meta(charset='utf-8')
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     link(rel="icon", type="image/svg+xml", href="/favicon.svg")
+    link(rel='stylesheet', href='/stylesheets/reset.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
-    script(type="module", src='/javascripts/nquery.js')
+    script(type='module' src='/javascripts/page.js')
   body
     header
-      h2= title
-      nav
-        ul
-          li
-            a(href="/") Home
-          if user
-            li
-              a(href="/dashboard") Insiders
-            li
-              a(href="/users/logout") Logout
-          if !user
-            li
-              a(href="/users/register") Register
-            li
-              a(href="/users/login") Login
+        a(href='/')
+            h1.title
+        nav
+            ul
+                li
+                    a(href='/') Home
+                if !user
+                    li
+                        a(href='/users/login') Login
+                    li
+                        a(href='/users/register') Register
+                if user
+                    li
+                        a(href="/dashboard") Insiders
+
+                    li
+                        a(href='/users/logout') Logout
     main
-      block content
+        block content
     footer
-        div(id="cpy")
-        div
-          a(href="#") twitter
+        div(id='cpy')
+        div kilroy was here

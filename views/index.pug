@@ -1,8 +1,7 @@
 extends layout
 
 block content
-    h1= subtitle
-    p Welcome to #{user}
-    h3 Testing Strategies:
-    each strat in strategies
-        p #{strat}
+    section.frontpage
+        h1 Welcome to the #{title}
+        if user
+            p User #{user} is logged on

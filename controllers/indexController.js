@@ -1,7 +1,6 @@
 exports.frontpage = function (req, res) {
     res.render('index', {
-        title: 'Demoing PassportJS',
-        subtitle: 'with OAuth2',
+        title: 'Frontpage',
         strategies: ['passport-gitlab2', 'amazon'],
         user: req.user
     });
@@ -9,8 +8,7 @@ exports.frontpage = function (req, res) {
 
 exports.dashboard = function (req,res) {
     res.render('dashboard', {
-        title: 'Demoing PassportJS',
-        subtitle: 'Here\'s What We Do:',
+        title: 'Insiders Page',
         user: req.user
     });
 };
