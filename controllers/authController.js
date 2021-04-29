@@ -11,46 +11,35 @@ exports.register = function (req, res) {
     });
 };
 
-exports.postRegister = function (req, res) {
+exports.postRegister = async function (req, res) {
     const { userid, email } = req.body;
     let errors = [];
 
     if (!userid || !email) {
         errors.push({ msg: 'Please enter all fields' });
     }
-
     if (errors.length > 0) {
         res.render('register', {
             errors,
             userid,
             email
         });
-    } else {
-        User.findOne({ email: email }).then( function (user) {
-            if (user) {
-                errors.push({ msg: 'Email already exists' });
-                res.render('register', {
-                    errors,
-                    userid,
-                    email
-                });
-              } else {
-                  const newUser = new User({
-                      userid,
-                      email
-                  });
-                  newUser.save()
-                      .then( function(user) {
-                          req.flash(
-                              'success_msg',
-                              'You are now registered and can log in'
-                          );
-                          res.redirect('/users/login');
-                      })
-                      .catch(err => console.log(err));
-              }
+    }
+
+    let user = await User.findOne({ email: email });
+    if (user) {
+        errors.push({ msg: 'User already exists' });
+        res.render('register', {
+            errors,
+            userid,
+            email
         });
     }
+
+    const newUser = new User({name: userid, email: email});
+    await newUser.save();
+    req.flash('success_msg', 'You are now registered and can log in');
+    res.redirect('/users/login');
 };
 
 exports.login = function (req, res) {
