@@ -19,12 +19,10 @@
     "express-session": "^1.15.6",
     "mongoose": "^5.7.5",
     "morgan": "^1.10.0",
+    "nodemon": "^2.0.15",
     "passport": "^0.4.0",
     "passport-amazon": "^1.0.0",
     "passport-gitlab2": "^5.0.0",
     "pug": "^3.0.2"
-  },
-  "devDependencies": {
-    "nodemon": "^1.18.9"
   }
 }

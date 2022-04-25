@@ -1,19 +1,19 @@
 const createError = require('http-errors');
 const path = require('path');
 const logger = require('morgan');
-
 const express = require('express');
 const mongoose = require('mongoose');
-const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
+const keys = require('./config/keys');  // various constants
+
 // Passport Config Strategies execute
+const passport = require('passport');
 const Strategies = require('./config/passport')(passport);
-const keys = require('./config/keys');
 
 // DB Config execute and server connect
 //const db = require('./config/keys').mongoURI;
-mongoose.connect('mongodb://localhost/passportTwo', {
+mongoose.connect('mongodb://0.0.0.0/passportTwo', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true
@@ -33,21 +33,20 @@ app.set('view engine', 'pug');
 app.use(express.urlencoded({ extended: true }));
 app.use(logger('dev'));
 
-// Express session
+// Express session prep
 app.use(require('express-session')({                        // passport initialize
     secret: keys.session.cookieSecret,                      // do the keyboard cat
     resave: true,                                           // to create entropy
     saveUninitialized: false
 }));
 
-// Passport middleware
+// Passport middleware prep
 app.use(passport.initialize());
 app.use(passport.session());
 
 // Connect flash
 app.use(flash());
-
-// Global variables
+// Global variables using flash
 app.use(function(req, res, next) {
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
