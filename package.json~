@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "pretest": "npm i",
-    "test": "DEBUG=passportTwo:* NODE_ENV=development node ./bin/www",
-    "nonet": "DEBUG=passportTwo:* NODE_ENV=development node ./bin/www"
+    "test": "DEBUG=passportOne:* NODE_ENV=development node ./bin/www",
+    "nonet": "DEBUG=passportOne:* NODE_ENV=development node ./bin/www"
   },
   "keywords": [],
   "author": "",

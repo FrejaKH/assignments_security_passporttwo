@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    main.otherpage
+        aside
+        section
+            h2= title
+                if users
+                    table
+                        each user in users
+                            tr
+                                td= user.name
+                                td= user.email
+                                td= user.date
+        aside

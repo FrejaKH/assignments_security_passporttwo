@@ -1,6 +1,6 @@
 exports.frontpage = function (req, res) {
     res.render('index', {
-        title: 'Frontpage',
+        title: 'Public Frontpage',
         strategies: ['passport-gitlab2', 'amazon'],
         user: req.user
     });

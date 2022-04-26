@@ -1,7 +1,8 @@
 extends layout
 
 block content
-    section.frontpage
-        h1 Welcome to the #{title}
-        if user
-            p User #{user} is logged on
+    main.frontpage
+        section
+            h2 Welcome to the #{title}
+            if user
+                p User #{user} is logged on

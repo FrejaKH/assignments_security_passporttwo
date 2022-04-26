@@ -1,34 +1,15 @@
 doctype html
 html
-  head
-    title.title
-    meta(charset='utf-8')
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    link(rel="icon", type="image/svg+xml", href="/favicon.svg")
-    link(rel='stylesheet', href='/stylesheets/reset.css')
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    script(type='module' src='/javascripts/page.js')
-  body
-    header
-        a(href='/')
-            h1.title
-        nav
-            ul
-                li
-                    a(href='/') Home
-                if !user
-                    li
-                        a(href='/users/login') Login
-                    li
-                        a(href='/users/register') Register
-                if user
-                    li
-                        a(href="/dashboard") Insiders
+    head
+        title.title
+        meta(charset='utf-8')
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        link(rel="icon", type="image/svg+xml", href="/favicon.svg")
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        script(type='module' src='/javascripts/index.js')
+    body
+        header#menu
 
-                    li
-                        a(href='/users/logout') Logout
-    main
         block content
-    footer
-        div(id='cpy')
-        div kilroy was here
+
+        include footer.pug

@@ -5,6 +5,14 @@ const mongoose = require('mongoose');
 const User = require('../models/User');
 const saltRounds = 10;
 
+exports.readFriends = async function (req, res) {
+    let us = await User.find({});
+    res.render('displayUsers', {
+        users: us,
+        title: 'Show friends'
+    });
+};
+
 exports.register = function (req, res) {
     res.render('register', {
             title: 'Register'
