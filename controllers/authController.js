@@ -60,22 +60,22 @@ exports.logout = function (req, res) {
     res.redirect('/');
 };
 
-/*
-exports.gitlab = function () {
+
+exports.github = function () {
     console.log("outg");
-    passport.authenticate('gitlab',
+    passport.authenticate('github',
       {
         scope: ['profile']
       });
 };
-exports.gitlab_callback = function (req, res, next) {
-    passport.authenticate('gitlab', {
+exports.github_callback = function (req, res, next) {
+    passport.authenticate('github', {
         successRedirect: '/dashboard',
         failureRedirect: '/users/login',
         failureFlash: true
     })(req, res, next);
 };
-*/
+
 /*
 exports.amazon = async function () {
     console.log("outa");

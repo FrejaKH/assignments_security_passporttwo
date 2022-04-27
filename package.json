@@ -1,12 +1,12 @@
 {
-  "name": "passportTwo",
+  "name": "passporttwo",
   "version": "0.9.0",
   "description": "Node.js authentication with Passport - oauth2",
   "main": "app.js",
   "scripts": {
     "start": "node ./bin/www",
     "pretest": "npm i",
-    "test": "DEBUG=passportTwo:* NODE_ENV=development node ./bin/www",
+    "test": "node ./bin/www",
     "nonet": "DEBUG=passportTwo:* NODE_ENV=development node ./bin/www"
   },
   "keywords": [],
@@ -22,6 +22,7 @@
     "nodemon": "^2.0.15",
     "passport": "^0.4.0",
     "passport-amazon": "^1.0.0",
+    "passport-github2": "^0.1.12",
     "passport-gitlab2": "^5.0.0",
     "pug": "^3.0.2"
   }

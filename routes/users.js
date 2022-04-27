@@ -28,6 +28,14 @@ router.get('/amazon/callback', passport.authenticate('amazon', {
                                     failureRedirect: '/users/login',
                                     failureFlash: true
                                 }));
+router.get('/github', passport.authenticate('github', {
+                                    scope: [ 'user:email' ]
+                                }));                                
+router.get('/github/callback', passport.authenticate('github', {
+                                    successRedirect: '/dashboard',
+                                    failureRedirect: '/users/login',
+                                    failureFlash: true
+                                }));                                
 
 router.get('/logout', auth.logout);
 
